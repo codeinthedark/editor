@@ -1,0 +1,337 @@
+@font-face {
+  font-family: "Press Start 2P";
+  src: url(~assets/fonts/PressStart2P-Regular.ttf)  format("truetype");
+}
+
+body, html {
+    font-family: "Press Start 2P", sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: black;
+}
+
+body {
+  background-image: url(~assets/images/logo.png);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 520px 476px;
+  position: relative;
+
+  &.power-mode {
+    animation: body-power 2s infinite both;
+  }
+}
+
+button {
+  font-family: "Press Start 2P", sans-serif;
+  appearance: none;
+  background-color: #3A9364;
+  color: white;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.instructions-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  text-align: center;
+  display: none;
+
+  .instructions {
+    margin-top: 100px;
+    max-width: 900px;
+    width: 100%;
+    height: 600px;
+    display: inline-block;
+    border: 0;
+  }
+}
+
+body.show-instructions {
+  .instructions-container {
+    display: block;
+  }
+}
+
+#editor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  background-color: rgba(0,0,0,0.5);
+  font-size: 14px;
+
+  .ace_keyword,
+  .ace_meta,
+  .ace_fold,
+  .ace_entity.ace_name.ace_function,
+  .ace_support.ace_function,
+  .ace_variable {
+    color: #00FF79;
+  }
+
+  .ace_comment {
+    color: #0DFDFF;
+    display: inline-block;
+    animation: grow 1.5s infinite both;
+  }
+
+  .ace_gutter {
+    background: rgba(0,0,0,0.5);
+  }
+
+  .ace_constant,
+  .ace_constant.ace_character,
+  .ace_constant.ace_character.ace_escape,
+  .ace_constant.ace_other,
+  .ace_string {
+    color: #F9FF00;
+    animation: pulse 1.5s infinite both;
+  }
+}
+
+body.power-mode #editor {
+  .ace_keyword,
+  .ace_meta,
+  .ace_fold,
+  .ace_entity.ace_name.ace_function,
+  .ace_support.ace_function,
+  .ace_variable {
+    color: #00DDFF;
+  }
+
+  .ace_comment {
+    color: #00FF79;
+  }
+
+  .ace_constant,
+  .ace_constant.ace_character,
+  .ace_constant.ace_character.ace_escape,
+  .ace_constant.ace_other,
+  .ace_string {
+    color: #F9FF00;
+  }
+
+  .ace_entity.ace_other.ace_attribute-name {
+    color: #8194F4;
+  }
+}
+
+.streak-container {
+  position: absolute;
+  z-index: 10;
+  right: 40px;
+  top: 20px;
+  text-align: center;
+
+  .current {
+    color: white;
+    font-size: 16px;
+  }
+
+  .counter {
+    font-size: 80px;
+    color: #4EFFA1;
+    padding-top: 30px;
+
+    &.bump {
+      animation: grow 0.25s both;
+    }
+  }
+
+  .exclamations {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    display: block;
+    color: #4EFFA1;
+    opacity: 0.75;
+    font-size: 20px;
+    width: 210px;
+
+    .exclamation {
+      left: 0;
+      top: 0;
+      display: block;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      animation: exclamation 1.5s ease-out both;
+    }
+  }
+}
+
+.download-button {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  right: 60px;
+
+  &:active {
+    bottom: 19px;
+  }
+}
+
+.instructions-button {
+  position: absolute;
+  z-index: 20;
+  right: 70px;
+  bottom: 70px;
+}
+
+.reference-screenshot-container {
+  position: absolute;
+  z-index: 30;
+  bottom: 130px;
+  right: 20px;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  width: 280px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  .reference-screenshot {
+    display: inline-block;
+    width: 200px;
+    height: 160px;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  &.active {
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+
+    .reference-screenshot {
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+    }
+
+    span {
+      display: none;
+    }
+  }
+}
+
+.power-mode-indicator {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  text-align: center;
+  bottom: 20px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+
+  h1 {
+    font-size: 40px;
+    margin: 0;
+    color: #00DDFF;
+  }
+}
+
+body.power-mode {
+  background-image: url(~assets/images/logo-power.png);
+
+  .power-mode-indicator {
+    opacity: 1;
+    animation: power-mode-indicator 750ms linear both;
+  }
+
+  .streak-container .counter {
+    color: #00DDFF;
+  }
+
+  button {
+    background: #3A5A93;
+  }
+
+  .exclamations .exclamation {
+    color: #00DDFF;
+  }
+}
+
+@keyframes pulse {
+    0% {
+        animation-timing-function: ease-out;
+    }
+    50% {
+        opacity: 0.5;
+        animation-timing-function: ease-in;
+    }
+}
+
+@keyframes grow {
+    0% {
+       animation-timing-function: ease-out;
+    }
+    50% {
+        transform: scale(1.3);
+        animation-timing-function: ease-in;
+    }
+}
+
+@keyframes body-power {
+    0% {
+       animation-timing-function: ease-out;
+    }
+    50% {
+        background-size: 650px 595px;
+        animation-timing-function: ease-in;
+    }
+}
+
+@keyframes exclamation {
+  100% {
+    opacity: 0;
+    transform: translate3D(0, 100px, 0);
+  }
+}
+
+@keyframes power-mode-indicator {
+  0% { transform: matrix3d(0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  3.2% { transform: matrix3d(0.673, 0.192, 0, 0, 0.126, 0.673, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  4.5% { transform: matrix3d(0.743, 0.25, 0, 0, 0.163, 0.743, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  6.41% { transform: matrix3d(0.836, 0.301, 0, 0, 0.196, 0.836, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  9.01% { transform: matrix3d(0.94, 0.308, 0, 0, 0.201, 0.94, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  12.71% { transform: matrix3d(1.032, 0.234, 0, 0, 0.154, 1.032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  13.51% { transform: matrix3d(1.044, 0.212, 0, 0, 0.14, 1.044, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  17.92% { transform: matrix3d(1.07, 0.098, 0, 0, 0.066, 1.07, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  18.92% { transform: matrix3d(1.069, 0.077, 0, 0, 0.052, 1.069, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  25.23% { transform: matrix3d(1.038, -0.001, 0, 0, -0.001, 1.038, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  29.03% { transform: matrix3d(1.016, -0.015, 0, 0, -0.01, 1.016, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  31.43% { transform: matrix3d(1.006, -0.017, 0, 0, -0.011, 1.006, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  34.63% { transform: matrix3d(0.997, -0.014, 0, 0, -0.01, 0.997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  40.14% { transform: matrix3d(0.992, -0.007, 0, 0, -0.005, 0.992, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  56.46% { transform: matrix3d(1, 0.001, 0, 0, 0.001, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  62.36% { transform: matrix3d(1.001, 0.001, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  81.48% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  84.68% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+}
+
+
