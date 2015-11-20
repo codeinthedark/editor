@@ -87,8 +87,13 @@ webpackers = _(config.webpackEnvs).mapObject (val) ->
 gulp
   .task "copy-assets", ->
     gulp
-      .src path.join config.paths.assets, "**"
+      .src [path.join(config.paths.assets, "**"), path.join(config.paths.app, "index.html")]
       .pipe gulp.dest(config.paths.tmp)
+
+  .task "copy-page-files", ->
+    gulp
+      .src path.join(config.paths.assets, "{instructions.html,page.png}")
+      .pipe gulp.dest(path.join config.paths.dist, "assets")
 
   .task "webpack-dev-server", (done) ->
     server = new WebpackDevServer webpackers.development,
@@ -119,7 +124,7 @@ gulp
       .pipe gulp.dest("#{config.paths.dist}")
 
   .task "dist", ->
-    runSequence "copy-assets", "build", "inline"
+    runSequence "copy-assets", "build", "inline", "copy-page-files"
 
   .task "default", ["serve"]
 
