@@ -2,7 +2,6 @@
 .sass-cache/
 
 node_modules/
-dist/
 .tmp/
 
 npm-debug.log
