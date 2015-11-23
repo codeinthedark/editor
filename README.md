@@ -1,3 +1,6 @@
+# Code in the Dark Editor
+![image](https://cloud.githubusercontent.com/assets/688415/11338071/19167072-91f2-11e5-9eb6-3e6799fa60aa.png)
+
 ## How to Use
 * Grab the contents of the [`dist/`](https://github.com/codeinthedark/editor/tree/master/dist) folder. All contestants should be given a copy of the editor.
 * Replace `assets/page.png` in the editor files with a screenshot of the page that is to be built in the competition. 
