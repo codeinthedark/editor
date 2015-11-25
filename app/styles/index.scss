@@ -14,15 +14,8 @@ body, html {
 }
 
 body {
-  background-image: url(~assets/images/logo.png);
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: 520px 476px;
-  position: relative;
 
-  &.power-mode {
-    animation: body-power 2s infinite both;
-  }
+  position: relative;
 }
 
 button {
@@ -68,6 +61,33 @@ body.show-instructions {
   }
 }
 
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: url(~assets/images/logo.png);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 520px 476px;
+
+  .power-mode & {
+    background-image: url(~assets/images/logo-power.png);
+    animation: background-power 2s infinite both;
+  }
+}
+
+.canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
 #editor {
   position: absolute;
   top: 0;
@@ -75,8 +95,9 @@ body.show-instructions {
   left: 0;
   right: 0;
   margin: 0;
-  background-color: rgba(0,0,0,0.5);
+  background: transparent;
   font-size: 14px;
+  transform: translate3d(0, 0, 0);
 
   .ace_keyword,
   .ace_meta,
@@ -255,8 +276,6 @@ body.power-mode #editor {
 }
 
 body.power-mode {
-  background-image: url(~assets/images/logo-power.png);
-
   .power-mode-indicator {
     opacity: 1;
     animation: power-mode-indicator 750ms linear both;
@@ -295,20 +314,20 @@ body.power-mode {
     }
 }
 
-@keyframes body-power {
-    0% {
-       animation-timing-function: ease-out;
-    }
-    50% {
-        background-size: 650px 595px;
-        animation-timing-function: ease-in;
-    }
-}
-
 @keyframes exclamation {
   100% {
     opacity: 0;
     transform: translate3D(0, 100px, 0);
+  }
+}
+
+@keyframes background-power {
+  0% {
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: scale(1.5);
+    animation-timing-function: ease-in;
   }
 }
 
@@ -333,5 +352,3 @@ body.power-mode {
   84.68% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
 }
-
-
