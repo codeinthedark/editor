@@ -2,6 +2,7 @@ _ = require "underscore"
 $ = require("gulp-load-plugins")()
 gulp = require "gulp"
 path = require "path"
+merge = require "merge-stream"
 deepExtend = require "deep-extend"
 runSequence = require "run-sequence"
 autoprefixer = require "autoprefixer-core"
@@ -86,9 +87,16 @@ webpackers = _(config.webpackEnvs).mapObject (val) ->
 
 gulp
   .task "copy-assets", ->
-    gulp
-      .src [path.join(config.paths.assets, "**"), path.join(config.paths.app, "index.html")]
+    assets = gulp
+      .src path.join(config.paths.assets, "**")
+      .pipe gulp.dest("#{config.paths.tmp}/assets")
+
+
+    instructions = gulp
+      .src path.join(config.paths.app, "index.html")
       .pipe gulp.dest(config.paths.tmp)
+
+    merge assets, instructions
 
   .task "copy-page-files", ->
     gulp
