@@ -33,6 +33,7 @@ class App
     "string.attribute-value.xml": [249, 255, 0]
     "string.unquoted.attribute-value.html": [249, 255, 0]
     "entity.other.attribute-name.xml": [129, 148, 244]
+    "comment.xml": [0, 255, 121]
 
   EXCLAMATION_EVERY: 10
   EXCLAMATIONS: ["Super!", "Radical!", "Fantastic!", "Great!", "OMG",
