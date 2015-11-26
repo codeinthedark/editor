@@ -48,6 +48,7 @@ class App
 
   constructor: ->
     @$streakCounter = $ ".streak-container .counter"
+    @$streakBar = $ ".streak-container .bar"
     @$exclamations = $ ".streak-container .exclamations"
     @$reference = $ ".reference-screenshot-container"
     @$editor = $ "#editor"
@@ -115,6 +116,8 @@ class App
     if @currentStreak >= @POWER_MODE_ACTIVATION_THRESHOLD and not @powerMode
       @activatePowerMode()
 
+    @refreshStreakBar()
+
     @renderStreak()
 
   endStreak: ->
@@ -129,6 +132,18 @@ class App
 
     _.defer =>
       @$streakCounter.addClass "bump"
+
+  refreshStreakBar: ->
+    @$streakBar.css
+      "webkit-transform": "scaleX(1)"
+      "transform": "scaleX(1)"
+      "transition": "none"
+
+    _.defer =>
+      @$streakBar.css
+        "webkit-transform": ""
+        "transform": ""
+        "transition": "all #{@STREAK_TIMEOUT}ms linear"
 
   showExclamation: ->
     $exclamation = $("<span>")
