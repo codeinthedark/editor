@@ -9,7 +9,7 @@ require "brace/theme/vibrant_ink"
 require "brace/ext/searchbox"
 
 class App
-  POWER_MODE_ACTIVATION_THRESHOLD: 250
+  POWER_MODE_ACTIVATION_THRESHOLD: 200
   STREAK_TIMEOUT: 10 * 1000
 
   MAX_PARTICLES: 500
