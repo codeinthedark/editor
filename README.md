@@ -1,4 +1,4 @@
-# Code in the Dark Editor
+# The official editor for [Code in the Dark](http://codeinthedark.com/)
 ![image](https://cloud.githubusercontent.com/assets/688415/11338071/19167072-91f2-11e5-9eb6-3e6799fa60aa.png)
 
 ## How to Use
