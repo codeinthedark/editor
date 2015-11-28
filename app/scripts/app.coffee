@@ -159,6 +159,7 @@ class App
   getCursorPosition: ->
     {left, top} = @editor.renderer.$cursorLayer.getPixelPosition()
     left += @editor.renderer.gutterWidth + 4
+    top -= @editor.renderer.scrollTop
     {x: left, y: top}
 
   spawnParticles: (type) ->
