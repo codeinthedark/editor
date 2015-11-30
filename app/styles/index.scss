@@ -14,15 +14,8 @@ body, html {
 }
 
 body {
-  background-image: url(~assets/images/logo.png);
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: 520px 476px;
-  position: relative;
 
-  &.power-mode {
-    animation: body-power 2s infinite both;
-  }
+  position: relative;
 }
 
 button {
@@ -68,6 +61,33 @@ body.show-instructions {
   }
 }
 
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: url(~assets/images/logo.png);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 520px 476px;
+
+  .power-mode & {
+    background-image: url(~assets/images/logo-power.png);
+    animation: background-power 2s infinite both;
+  }
+}
+
+.canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
 #editor {
   position: absolute;
   top: 0;
@@ -75,8 +95,9 @@ body.show-instructions {
   left: 0;
   right: 0;
   margin: 0;
-  background-color: rgba(0,0,0,0.5);
+  background: transparent;
   font-size: 14px;
+  transform: translate3d(0, 0, 0);
 
   .ace_keyword,
   .ace_meta,
@@ -137,13 +158,23 @@ body.power-mode #editor {
 .streak-container {
   position: absolute;
   z-index: 10;
-  right: 40px;
+  right: 20px;
   top: 20px;
-  text-align: center;
+  text-align: right;
 
   .current {
     color: white;
     font-size: 16px;
+  }
+
+  .bar {
+    position: relative;
+    opacity: 0.5;
+    margin-top: 23px;
+    height: 8px;
+    background: #4EFFA1;
+    width: 100%;
+    transform: scaleX(0);
   }
 
   .counter {
@@ -164,15 +195,14 @@ body.power-mode #editor {
     color: #4EFFA1;
     opacity: 0.75;
     font-size: 20px;
-    width: 210px;
+    text-align: right;
 
     .exclamation {
-      left: 0;
+      right: 0;
       top: 0;
       display: block;
       position: absolute;
-      width: 100%;
-      text-align: center;
+      min-width: 200px;
       animation: exclamation 1.5s ease-out both;
     }
   }
@@ -182,7 +212,7 @@ body.power-mode #editor {
   position: absolute;
   z-index: 10;
   bottom: 20px;
-  right: 60px;
+  right: 20px;
 
   &:active {
     bottom: 19px;
@@ -192,7 +222,7 @@ body.power-mode #editor {
 .instructions-button {
   position: absolute;
   z-index: 20;
-  right: 70px;
+  right: 20px;
   bottom: 70px;
 }
 
@@ -203,17 +233,14 @@ body.power-mode #editor {
   right: 20px;
   cursor: pointer;
   color: white;
-  text-align: center;
+  text-align: right;
   font-size: 12px;
-  width: 280px;
-  padding: 20px;
   box-sizing: border-box;
 
   .reference-screenshot {
-    display: inline-block;
     width: 200px;
     height: 160px;
-    margin-bottom: 10px;
+    margin-top: 15px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -255,15 +282,19 @@ body.power-mode #editor {
 }
 
 body.power-mode {
-  background-image: url(~assets/images/logo-power.png);
-
   .power-mode-indicator {
     opacity: 1;
     animation: power-mode-indicator 750ms linear both;
   }
 
-  .streak-container .counter {
-    color: #00DDFF;
+  .streak-container {
+    .counter {
+      color: #00DDFF;
+    }
+
+    .bar {
+      background: #00DDFF;
+    }
   }
 
   button {
@@ -295,20 +326,20 @@ body.power-mode {
     }
 }
 
-@keyframes body-power {
-    0% {
-       animation-timing-function: ease-out;
-    }
-    50% {
-        background-size: 650px 595px;
-        animation-timing-function: ease-in;
-    }
-}
-
 @keyframes exclamation {
   100% {
     opacity: 0;
     transform: translate3D(0, 100px, 0);
+  }
+}
+
+@keyframes background-power {
+  0% {
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: scale(1.5);
+    animation-timing-function: ease-in;
   }
 }
 
@@ -333,5 +364,3 @@ body.power-mode {
   84.68% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
 }
-
-
