@@ -1,6 +1,8 @@
 # The official editor for [Code in the Dark](http://codeinthedark.com/)
 ![image](https://cloud.githubusercontent.com/assets/688415/11479175/f3aedfbe-9790-11e5-9ad9-ce930fe5a3a8.png)
 
+**Try it online: http://codeinthedark.com/editor/**
+
 ## How to Use
 * Grab the contents of the [`dist/`](https://github.com/codeinthedark/editor/tree/master/dist) folder, or download [this zip](https://github.com/codeinthedark/editor/releases/download/v0.1.0/editor.zip). All contestants should be given a copy of the editor.
 * Replace `assets/page.png` in the editor files with a screenshot of the page that is to be built in the competition. 
