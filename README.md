@@ -1,5 +1,6 @@
 # The official editor for [Code in the Dark](https://github.com/codeinthedark/codeinthedark.github.io)
-(Read more about the Code in the Dark competition [here](https://github.com/codeinthedark/codeinthedark.github.io))
+*Read more about the Code in the Dark competition [here](https://github.com/codeinthedark/codeinthedark.github.io)*
+
 ![image](https://cloud.githubusercontent.com/assets/688415/11479175/f3aedfbe-9790-11e5-9ad9-ce930fe5a3a8.png)
 
 **Try it online: http://codeinthedark.com/editor/**
