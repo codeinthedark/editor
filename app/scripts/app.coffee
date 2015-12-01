@@ -225,8 +225,9 @@ class App
 
   onClickDownload: =>
     $a = $("<a>")
-      .attr "href", window.URL.createObjectURL(new Blob([@editor.getValue()], {type: "text/txt"}))
-      .attr "download", "design.html"
+      .attr
+        download: 'design.html'
+        href: window.URL.createObjectURL(new Blob([@editor.getValue()], {type: "text/txt"}))
       .appendTo "body"
 
     $a[0].click()
@@ -235,16 +236,15 @@ class App
 
   onChange: (e) =>
     @debouncedSaveContent()
-    if e.data.action is "insertText"
+    insertTextAction = e.data.action is "insertText"
+    if insertTextAction
       @increaseStreak()
       @debouncedEndStreak()
 
     @throttledShake()
 
-    pos = if e.data.action is "insertText"
-      e.data.range.end
-    else
-      e.data.range.start
+    range = e.data.range
+    pos = if insertTextAction then range.end else range.start
 
     token = @editor.session.getTokenAt pos.row, pos.column
 
