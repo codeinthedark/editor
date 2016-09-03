@@ -15,10 +15,11 @@ class App
   MAX_PARTICLES: 500
   PARTICLE_NUM_RANGE: [5..12]
   PARTICLE_GRAVITY: 0.075
+  PARTICLE_SIZE: 8
   PARTICLE_ALPHA_FADEOUT: 0.96
   PARTICLE_VELOCITY_RANGE:
-    x: [-1, 1]
-    y: [-3.5, -1.5]
+    x: [-2.5, 2.5]
+    y: [-7, -3.5]
 
   PARTICLE_COLORS:
     "text": [255, 255, 255]
@@ -88,6 +89,7 @@ class App
 
     editor.setShowPrintMargin false
     editor.setHighlightActiveLine false
+    editor.setFontSize 20
     editor.setTheme "ace/theme/vibrant_ink"
     editor.getSession().setMode "ace/mode/html"
     editor.session.setOption "useWorker", false
@@ -207,7 +209,12 @@ class App
       particle.alpha *= @PARTICLE_ALPHA_FADEOUT
 
       @canvasContext.fillStyle = "rgba(#{particle.color.join ", "}, #{particle.alpha})"
-      @canvasContext.fillRect Math.round(particle.x - 1), Math.round(particle.y - 1), 3, 3
+      @canvasContext.fillRect(
+        Math.round(particle.x - @PARTICLE_SIZE / 2)
+        Math.round(particle.y - @PARTICLE_SIZE / 2)
+        @PARTICLE_SIZE
+        @PARTICLE_SIZE
+      )
 
   shake: ->
     return unless @powerMode
