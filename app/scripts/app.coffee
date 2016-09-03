@@ -75,7 +75,7 @@ class App
     $(".instructions-container, .instructions-button").on "click", ->
       $("body").toggleClass "show-instructions"
 
-    @$reference.on "click", => @$reference.toggleClass "active"
+    @$reference.on "click", @onClickReference
     @$download.on "click", @onClickDownload
     @$nameTag.on "click", => @getName true
 
@@ -231,6 +231,10 @@ class App
   deactivatePowerMode: =>
     @powerMode = false
     @$body.removeClass "power-mode"
+
+  onClickReference: =>
+    @$reference.toggleClass "active"
+    @editor.focus() unless @$reference.hasClass("active")
 
   onClickDownload: =>
     $a = $("<a>")
