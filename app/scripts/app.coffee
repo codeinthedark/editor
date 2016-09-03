@@ -52,6 +52,7 @@ class App
     @$streakBar = $ ".streak-container .bar"
     @$exclamations = $ ".streak-container .exclamations"
     @$reference = $ ".reference-screenshot-container"
+    @$nameTag = $ ".name-tag"
     @$editor = $ "#editor"
     @canvas = @setupCanvas()
     @canvasContext = @canvas.getContext "2d"
@@ -76,6 +77,9 @@ class App
 
     @$reference.on "click", => @$reference.toggleClass "active"
     @$download.on "click", @onClickDownload
+    @$nameTag.on "click", => @getName true
+
+    @getName()
 
     window.requestAnimationFrame? @onFrame
 
@@ -97,6 +101,11 @@ class App
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
     canvas
+
+  getName: (forceUpdate) ->
+    name = (not forceUpdate and localStorage["name"]) || prompt "What's your name?"
+    localStorage["name"] = name
+    @$nameTag.text(name) if name
 
   loadContent: ->
     return unless (content = localStorage["content"])
