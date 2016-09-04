@@ -206,28 +206,26 @@ body.power-mode #editor {
   }
 }
 
-.finish-button {
+.button-bar {
   position: absolute;
   z-index: 10;
   bottom: 20px;
   right: 20px;
+}
 
-  &:active {
-    bottom: 19px;
-  }
+.finish-button {
+  float: right;
+  margin-left: 10px;
 }
 
 .instructions-button {
-  position: absolute;
-  z-index: 20;
-  right: 20px;
-  bottom: 70px;
+  float: right;
 }
 
 .reference-screenshot-container {
   position: absolute;
   z-index: 30;
-  bottom: 130px;
+  bottom: 62px;
   right: 20px;
   cursor: pointer;
   color: white;
