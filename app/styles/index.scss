@@ -206,7 +206,7 @@ body.power-mode #editor {
   }
 }
 
-.download-button {
+.finish-button {
   position: absolute;
   z-index: 10;
   bottom: 20px;
@@ -298,6 +298,7 @@ body.power-mode #editor {
 }
 
 .result {
+  display: none;
   background: white;
   z-index: 35;
   position: absolute;

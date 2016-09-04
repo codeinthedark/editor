@@ -54,10 +54,11 @@ class App
     @$exclamations = $ ".streak-container .exclamations"
     @$reference = $ ".reference-screenshot-container"
     @$nameTag = $ ".name-tag"
+    @$result = $ ".result"
     @$editor = $ "#editor"
     @canvas = @setupCanvas()
     @canvasContext = @canvas.getContext "2d"
-    @$download = $ ".download-button"
+    @$finish = $ ".finish-button"
 
     @$body = $ "body"
 
@@ -77,7 +78,7 @@ class App
       $("body").toggleClass "show-instructions"
 
     @$reference.on "click", @onClickReference
-    @$download.on "click", @onClickDownload
+    @$finish.on "click", @onClickFinish
     @$nameTag.on "click", => @getName true
 
     @getName()
@@ -243,15 +244,15 @@ class App
     @$reference.toggleClass "active"
     @editor.focus() unless @$reference.hasClass("active")
 
-  onClickDownload: =>
-    $a = $("<a>")
-      .attr "href", window.URL.createObjectURL(new Blob([@editor.getValue()], {type: "text/txt"}))
-      .attr "download", "design.html"
-      .appendTo "body"
+  onClickFinish: =>
+    confirm = prompt "
+      This will show the results of your code. Doing this before the round is over
+      WILL DISQUALIFY YOU. Are you sure you want to proceed? Type \"yes\" to confirm.
+    "
 
-    $a[0].click()
-
-    $a.remove()
+    if confirm?.toLowerCase() is "yes"
+      @$result[0].contentWindow.postMessage(@editor.getValue(), "*")
+      @$result.show()
 
   onChange: (e) =>
     @debouncedSaveContent()
