@@ -2,6 +2,7 @@ _ = require "underscore"
 $ = require("gulp-load-plugins")()
 gulp = require "gulp"
 path = require "path"
+rename = require "gulp-rename"
 merge = require "merge-stream"
 deepExtend = require "deep-extend"
 runSequence = require "run-sequence"
@@ -129,6 +130,7 @@ gulp
     gulp
       .src "#{config.paths.tmp}/index.html"
       .pipe $.inlineSource()
+      .pipe rename(basename: "editor")
       .pipe gulp.dest("#{config.paths.dist}")
 
   .task "dist", ->
