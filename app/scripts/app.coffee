@@ -74,9 +74,7 @@ class App
     @editor.getSession().on "change", @onChange
     $(window).on "beforeunload", -> "Hold your horses!"
 
-    $(".instructions-container, .instructions-button").on "click", ->
-      $("body").toggleClass "show-instructions"
-
+    $(".instructions-container, .instructions-button").on "click", @onClickInstructions
     @$reference.on "click", @onClickReference
     @$finish.on "click", @onClickFinish
     @$nameTag.on "click", => @getName true
@@ -239,6 +237,10 @@ class App
   deactivatePowerMode: =>
     @powerMode = false
     @$body.removeClass "power-mode"
+
+  onClickInstructions: =>
+    $("body").toggleClass "show-instructions"
+    @editor.focus() unless $("body").hasClass "show-instructions"
 
   onClickReference: =>
     @$reference.toggleClass "active"
