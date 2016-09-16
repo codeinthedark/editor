@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <script>
+        window.addEventListener('message', function(e) {
+          if (
+            window.location.origin === 'file://' ||
+            window.location.origin === (e.origin || e.originalEvent.origin)
+          ) {
+            document.documentElement.innerHTML = e.data
+          }
+        })
+      </script>
+  </body>
+</html>

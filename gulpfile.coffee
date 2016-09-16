@@ -2,6 +2,7 @@ _ = require "underscore"
 $ = require("gulp-load-plugins")()
 gulp = require "gulp"
 path = require "path"
+rename = require "gulp-rename"
 merge = require "merge-stream"
 deepExtend = require "deep-extend"
 runSequence = require "run-sequence"
@@ -100,7 +101,7 @@ gulp
 
   .task "copy-page-files", ->
     gulp
-      .src path.join(config.paths.assets, "{instructions.html,page.png}")
+      .src path.join(config.paths.assets, "{instructions.html,page.png,result.html,beach.jpg}")
       .pipe gulp.dest(path.join config.paths.dist, "assets")
 
   .task "webpack-dev-server", (done) ->
@@ -129,10 +130,10 @@ gulp
     gulp
       .src "#{config.paths.tmp}/index.html"
       .pipe $.inlineSource()
+      .pipe rename(basename: "editor")
       .pipe gulp.dest("#{config.paths.dist}")
 
   .task "dist", ->
     runSequence "copy-assets", "build", "inline", "copy-page-files"
 
   .task "default", ["serve"]
-

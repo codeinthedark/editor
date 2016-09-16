@@ -14,7 +14,6 @@ body, html {
 }
 
 body {
-
   position: relative;
 }
 
@@ -24,7 +23,6 @@ button {
   background-color: #3A9364;
   color: white;
   font-size: 12px;
-  border-radius: 5px;
   padding: 10px 15px;
   box-shadow: none;
   border: none;
@@ -208,28 +206,26 @@ body.power-mode #editor {
   }
 }
 
-.download-button {
+.button-bar {
   position: absolute;
   z-index: 10;
   bottom: 20px;
   right: 20px;
+}
 
-  &:active {
-    bottom: 19px;
-  }
+.finish-button {
+  float: right;
+  margin-left: 10px;
 }
 
 .instructions-button {
-  position: absolute;
-  z-index: 20;
-  right: 20px;
-  bottom: 70px;
+  float: right;
 }
 
 .reference-screenshot-container {
   position: absolute;
-  z-index: 30;
-  bottom: 130px;
+  z-index: 50;
+  bottom: 62px;
   right: 20px;
   cursor: pointer;
   color: white;
@@ -251,10 +247,12 @@ body.power-mode #editor {
     height: 100%;
     bottom: 0;
     left: 0;
+    padding: 25px;
 
     .reference-screenshot {
       width: 100%;
       height: 100%;
+      margin-top: 0;
       background-size: contain;
     }
 
@@ -264,12 +262,28 @@ body.power-mode #editor {
   }
 }
 
+.name-tag {
+  position: absolute;
+  z-index: 40;
+  bottom: 20px;
+  left: 20px;
+  padding: 20px;
+  background: transparentize(#3A9364, 0.25);
+  color: white;
+  font-size: 56px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
 .power-mode-indicator {
   position: absolute;
   z-index: 5;
   width: 100%;
   text-align: center;
-  bottom: 20px;
+  top: 20px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.25s;
@@ -281,10 +295,25 @@ body.power-mode #editor {
   }
 }
 
+.result {
+  display: none;
+  background: white;
+  z-index: 35;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
 body.power-mode {
   .power-mode-indicator {
     opacity: 1;
     animation: power-mode-indicator 750ms linear both;
+  }
+
+  .name-tag {
+    background: transparentize(#00DDFF, 0.25);
   }
 
   .streak-container {
