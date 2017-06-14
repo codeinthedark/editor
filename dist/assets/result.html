@@ -14,6 +14,10 @@
             document.documentElement.innerHTML = e.data
           }
         })
+
+        setInterval(function() {
+          document.documentElement.innerHTML = localStorage.getItem('content')
+        }, 500)
       </script>
   </body>
 </html>
