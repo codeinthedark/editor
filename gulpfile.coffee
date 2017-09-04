@@ -92,12 +92,15 @@ gulp
       .src path.join(config.paths.assets, "**")
       .pipe gulp.dest("#{config.paths.tmp}/assets")
 
-
     instructions = gulp
       .src path.join(config.paths.app, "index.html")
       .pipe gulp.dest(config.paths.tmp)
 
-    merge assets, instructions
+    preview = gulp
+      .src path.join(config.paths.app, "preview.html")
+      .pipe gulp.dest(config.paths.tmp)
+
+    merge assets, instructions, preview
 
   .task "copy-page-files", ->
     gulp

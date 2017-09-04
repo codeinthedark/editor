@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="preview"></div>
+        <script>
+            function showPreview() {
+                var codeWrittenInTheDark = localStorage.getItem('content');
+                document.getElementById('preview').innerHTML = codeWrittenInTheDark;
+            }
+            setInterval(showPreview, 500);
+        </script>
+    </body>
+</html>
