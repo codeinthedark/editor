@@ -256,8 +256,17 @@ class App
       @$result[0].contentWindow.postMessage(@editor.getValue(), "*")
       @$result.show()
 
+  pushChanges: (e) =>
+    # You might need to throttle this call, but for now it doesn't
+    # seem necessary
+    if window.citdMonitorEndpoint
+      $.post('http://localhost:1337/' + localStorage["name"], {
+          markup: @editor.getValue()
+        })
+
   onChange: (e) =>
     @debouncedSaveContent()
+    @pushChanges(e)
     insertTextAction = e.data.action is "insertText"
     if insertTextAction
       @increaseStreak()

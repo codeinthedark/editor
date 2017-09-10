@@ -1,0 +1,15 @@
+{
+  "name": "citd-monitor",
+  "version": "1.0.0",
+  "description": "Monitor for spectators at Code in the Dark events",
+  "main": "monitor.js",
+  "author": "Filip Haglund",
+  "license": "ISC",
+  "repository": "TBD",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "socket.io": "^2.0.3"
+  }
+}
