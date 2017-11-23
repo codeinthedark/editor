@@ -3,6 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <title>Code in the Dark</title>
+  <script>
+      window.onload = function() {
+          var timer = document.getElementById('timer');
+          var timerStarted = false;
+          timer.innerHTML = '15' + ":" + '00';
+          document.addEventListener('keydown', function(event) {
+              if (!timerStarted) {
+                  startTimer();
+                  timerStarted = true;
+              }
+          }, false);
+
+          document.addEventListener('click', function(event) {
+              if (!timerStarted) {
+                  startTimer();
+                  timerStarted = true;
+              }
+          }, false);
+
+          document.getElementById('time-left').addEventListener('click', function(event) {
+              event.stopPropagation();
+              if (timer.innerHTML === "COMPLETED") {
+                  timer.innerHTML = '15' + ":" + '00';
+                  timerStarted = false;
+              }
+          })
+
+          function startTimer() {
+              var presentTime = timer.innerHTML;
+              var timeArray = presentTime.split(/[:]+/);
+              var m = timeArray[0];
+              var s = checkSecond((timeArray[1] - 1));
+              if(s==59){m=m-1}
+              if(m<0){
+                  alert("TIME'S UP, HANDS UP!!!")
+                  timer.innerHTML = "COMPLETED"
+                  return;
+              }
+
+              timer.innerHTML =
+                m + ":" + s;
+              setTimeout(startTimer, 1000);
+            }
+
+            function checkSecond(sec) {
+              if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+              if (sec < 0) {sec = "59"};
+              return sec;
+            }
+      }
+  </script>
   <script src="bundle.js" inline></script>
 </head>
 <body>
@@ -22,6 +73,9 @@
 
   <div class="name-tag">
     Unnamed
+  </div>
+  <div class="time-left" id="time-left">
+      Time left = <p id="timer"></p>
   </div>
 
   <div class="power-mode-indicator">

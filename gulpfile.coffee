@@ -71,9 +71,9 @@ config =
 
       plugins: [
         new webpack.optimize.DedupePlugin()
-        new webpack.optimize.UglifyJsPlugin(
-          compressor: { warnings: false }
-        )
+        # new webpack.optimize.UglifyJsPlugin(
+        #   compressor: { warnings: false }
+        # )
       ]
 
 config = _(config).mapObject (val) ->
