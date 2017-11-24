@@ -266,7 +266,9 @@ body.power-mode #editor {
   position: absolute;
   z-index: 35;
   bottom: 20px;
-  left: 20px;
+  right: 20px;
+  bottom: 60%;
+  transform: translate(0, -50%);
   padding: 10px;
   background: transparentize(#3A9364, 0.25);
   color: white;
@@ -279,11 +281,13 @@ body.power-mode #editor {
 }
 
 .time-left {
+    display: flex;
+    align-items: center;
   position: absolute;
   z-index: 35;
-  bottom: 20px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  bottom: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
   color: transparentize(#3A9364, 0.25);
   font-size:25px;
   text-align:center;

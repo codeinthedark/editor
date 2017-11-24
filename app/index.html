@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <title>Code in the Dark</title>
   <script>
+      document.onreadystatechange = function() {
+          if(document.readyState === "interactive") {
+              localStorage.removeItem('content');
+          }
+      }
+
       window.onload = function() {
           var timer = document.getElementById('timer');
           var timerStarted = false;
@@ -75,7 +81,7 @@
     Unnamed
   </div>
   <div class="time-left" id="time-left">
-      Time left = <p id="timer"></p>
+    Time: <p id="timer"></p>
   </div>
 
   <div class="power-mode-indicator">
